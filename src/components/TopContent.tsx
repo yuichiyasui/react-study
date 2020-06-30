@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
@@ -7,12 +7,17 @@ import InputBase from '@material-ui/core/InputBase'
 import 'assets/css/components/topContent.scss'
 
 const TopContent: FC = () => {
+  const [keyword, setKeyword] = useState('')
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(keyword) // TODO: ESListの警告回避のためにとりあえず入れた
+    setKeyword(event.target.value)
+  }
   return (
     <Paper className="paper">
       <IconButton>
         <SearchIcon type="submit" />
       </IconButton>
-      <InputBase />
+      <InputBase placeholder="無料素材を検索" onChange={handleChange} />
     </Paper>
   )
 }

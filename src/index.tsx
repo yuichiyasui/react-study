@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'assets/css/index.css'
 import Top from 'pages/Top'
 import Header from 'components/Header'
+
+import 'assets/css/index.scss'
 
 import * as serviceWorker from './serviceWorker'
 
