@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 
 const Header: FC = () => {
   return (
-    <AppBar>
+    <AppBar color="transparent">
       <Toolbar>
         <h2>React Study</h2>
       </Toolbar>
