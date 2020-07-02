@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import Result from 'pages/Result'
 import TopContent from 'components/TopContent'
 
 import 'assets/css/pages/top.scss'
@@ -15,7 +16,7 @@ const Top: FC = () => {
           </div>
         </Route>
         <Route path="/search/:keyword" exact>
-          検索結果
+          <Result></Result>
         </Route>
       </Switch>
     </Router>
