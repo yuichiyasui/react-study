@@ -1,17 +1,13 @@
-import React, { FC, useState, useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import React, { FC, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
 import firebase from '../firebase'
 import { TileData } from 'types/types'
 
-import 'assets/css/components/resultImageList.scss'
-
-const ResultImageList: FC = () => {
-  /** TileDataの配列型の変数dataと関数setDataを作成して、変数dataに初期値として空の配列を与える */
-  const [data, setData] = useState<TileData[]>([])
+const Download: FC = () => {
   const { keyword } = useParams()
-  const history = useHistory()
+  const [data, setData] = useState<TileData[]>([])
 
   const getData = async (searchWord: string | undefined) => {
     /** Firestoreのインスタンスを生成 */
@@ -32,23 +28,34 @@ const ResultImageList: FC = () => {
     /** stateに値をセット(asで型変換) */
     setData(temporaryData as TileData[])
   }
+
   /** getDataを最初だけ呼び出す */
   useEffect(() => {
     getData(keyword)
   }, [keyword])
 
-  return (
-    <div className="result-image-list">
-      {data.map((tile) => (
-        <div className="item" key={tile.title}>
-          <Button onClick={() => history.push('/download/' + tile.title)}>
-            <img height="200" src={tile.image} alt={tile.title} />
-          </Button>
-          <h3>{tile.title}</h3>
-        </div>
-      ))}
-    </div>
-  )
+  const displayImage = () => {
+    const container = {
+      margin: '5rem auto',
+      display: 'flex',
+      justifyContent: 'center',
+    }
+    return (
+      <div style={container}>
+        {data.map((tile) => (
+          <div>
+            <img height="400" src={tile.image} alt={tile.title} />
+            <div style={{ textAlign: 'center' }}>
+              <Button variant="contained" href={tile.downloadUrl}>
+                ダウンロード
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+  return <div>{displayImage()}</div>
 }
 
-export default ResultImageList
+export default Download
