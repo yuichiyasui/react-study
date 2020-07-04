@@ -1,13 +1,17 @@
 import React, { FC, useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+
 import firebase from '../firebase'
 import { TileData } from 'types/types'
-import { useParams } from 'react-router-dom'
+
 import 'assets/css/components/resultImageList.scss'
 
 const ResultImageList: FC = () => {
   /** TileDataの配列型の変数dataと関数setDataを作成して、変数dataに初期値として空の配列を与える */
   const [data, setData] = useState<TileData[]>([])
   const { keyword } = useParams()
+  const history = useHistory()
 
   const getData = async (searchWord: string | undefined) => {
     /** Firestoreのインスタンスを生成 */
@@ -38,7 +42,10 @@ const ResultImageList: FC = () => {
     <div className="result-image-list">
       {data.map((tile) => (
         <div className="item" key={tile.title}>
-          <img width="218" src={tile.image} alt={tile.title} />
+          <Button onClick={() => history.push('/download/' + tile.title)}>
+            <img width="218" src={tile.image} alt={tile.title} />
+          </Button>
+          <h3>{tile.title}</h3>
         </div>
       ))}
     </div>

@@ -2,9 +2,11 @@
     margin: 5rem auto;
     width: 80vw;
     display: flex;
+    align-items: baseline;
+    justify-items: center;
 
     .item {
         margin: 3rem;
-        align-self: center;
+        text-align: center;
     }
 }
