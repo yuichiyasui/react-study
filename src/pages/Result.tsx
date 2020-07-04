@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
+import ResultImageList from 'components/ResultImageList'
 
 const Result: FC = () => {
-  return <div>検索結果だよ！</div>
+  return <ResultImageList />
 }
 
 export default Result
